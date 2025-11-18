@@ -12,13 +12,38 @@ import java.util.Scanner;
 
 public class Exercise {
   public static void main(String[] args) {
-    String decimal = "";
+    //Variable to catch input
+    String decimal;
+    //Split input into integer and decimal parts
+    String[] numSplit = new String[2];
+    //Variables to hold integer and decimal parts as integers
+    int integer = 0;
+    String deci = " ";
+    //Create scanner
     Scanner input = new Scanner(System.in);
 
+    //Denominator & numerator
+    int denominator = 1;
+    int numerator = 0;
+
+    // Input calculation and variables
     System.out.print("Enter a decimal: ");
     decimal = input.next();
+    numSplit = decimal.split("\\.");
+    integer = Integer.parseInt(numSplit[0]);
+    deci = numSplit[1];
+    numerator = Integer.parseInt(deci);
 
-    
+    // Find denominator
+    for (int i = 0; i < deci.length(); i++){
+      denominator *= 10;
+    }
+    //Find numerator in improper fraction
+    numerator = (denominator * integer) + numerator;
+    //Crate fraction
+    Rational value = new Rational(numerator, denominator);
+    //Output fraction
+    System.out.println("The fraction number is " + value.toString());
 
   }
 }
